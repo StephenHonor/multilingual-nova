@@ -29,9 +29,9 @@ class NovaLanguageTool extends Tool
     // }
     public function menu(Request $request)
     {
-        return view('nova-language-tool::navigation');
-        // return MenuSection::make('Price Tracker')
-        //     ->path('/price-tracker')
-        //     ->icon('server');
+        // return view('nova-language-tool::navigation');
+        return MenuSection::make('Language')
+            ->path('/multilingual')
+            ->icon('server');
     }
 }

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Digitalcloud\MultilingualNova\Http\Controllers\LanguageCurrentController;
 use Digitalcloud\MultilingualNova\Http\Controllers\LanguageDeleteController;
+
 /*
 |--------------------------------------------------------------------------
 | Tool API Routes
