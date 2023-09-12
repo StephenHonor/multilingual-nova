@@ -16,11 +16,11 @@ import Tool from './components/Tool.vue';
 
 Nova.booting((app, store) => {
     
-    Vue.component('index-multilingual-nova', IndexField);
-    Vue.component('detail-multilingual-nova', DetailField);
-    Vue.component('form-multilingual-nova', FormField);
+    app.component('index-multilingual-nova', IndexField);
+    app.component('detail-multilingual-nova', DetailField);
+    app.component('form-multilingual-nova', FormField);
 
-    Vue.component('language-selector', LanguageSelector);
+    app.component('language-selector', LanguageSelector);
     Nova.inertia('Multilingual', Tool)
     // router.addRoutes([
     //     {
