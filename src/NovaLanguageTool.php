@@ -31,7 +31,7 @@ class NovaLanguageTool extends Tool
     {
         // return view('nova-language-tool::navigation');
         return MenuSection::make('Language')
-            ->path('/multilingual')
+            ->path('/nova-language-tool')
             ->icon('server');
     }
 }
