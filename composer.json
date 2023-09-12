@@ -1,5 +1,5 @@
 {
-    "name": "max26292/multilingual-nova",
+    "name": "max26292/multilingual",
     "description": "💪 Multilingual Nova (using default nova fields)",
     "keywords": [
         "laravel",
@@ -14,11 +14,6 @@
     "autoload": {
         "psr-4": {
             "Digitalcloud\\MultilingualNova\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Digitalcloud\\MultilingualNova\\Tests\\": "tests"
         }
     },
     "extra": {

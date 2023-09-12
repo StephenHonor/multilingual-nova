@@ -1,94 +1,35 @@
 <?php
 
-namespace Digitalcloud\MultilingualNova;
+namespace Max26292\Multilingual;
 
-use Digitalcloud\MultilingualNova\Helper\MultilingualHelper;
-use Illuminate\Support\Facades\App;
-use Laravel\Nova\Fields\Field;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\MenuSection;
+use Laravel\Nova\Nova;
+use Laravel\Nova\Tool;
 
-class Multilingual extends Field
+class Multilingual extends Tool
 {
     /**
-     * The field's component.
+     * Perform any tasks that need to happen when the tool is booted.
      *
-     * @var string
+     * @return void
      */
-    public $component = 'multilingual-nova';
-
-    public function __construct($name, $attribute = null, $resolveCallback = null)
+    public function boot()
     {
-        parent::__construct($name, $attribute, $resolveCallback);
-
-        $locales = array_map(function ($value) {
-            return __($value);
-        }, MultilingualHelper::getSupportLocales());
-
-        $this->setLocales($locales);
-        $this->withMeta(['url' => config('nova.path')]);
+        Nova::script('multilingual', __DIR__.'/../dist/js/tool.js');
+        Nova::style('multilingual', __DIR__.'/../dist/css/tool.css');
     }
 
     /**
-     * @param NovaRequest $request
-     * @param object $model
-     * @return null
-     */
-    public function fill(NovaRequest $request, $model)
-    {
-        return null;
-    }
-
-    /**
-     * @param mixed $resource
-     * @param string $attribute
-     * @return array
-     */
-    protected function resolveAttribute($resource, $attribute)
-    {
-        $localeCurrent = App::getLocale();
-
-        $locales = $this->getLocales();
-        $result = [];
-        foreach ($locales as $key => $locale) {
-            $isTranslated = false;
-            foreach ($resource->getTranslatableAttributes() as $value) {
-                $isTranslated = in_array($key, array_keys($resource->getTranslations($value)));
-                if ($isTranslated) {
-                    break;
-                }
-            }
-
-            $result[] = [
-                'label' => $locale,
-                'value' => $key,
-                'selected' => $localeCurrent === $key,
-                'translated' => $isTranslated
-            ];
-        }
-
-        return [
-            'id' => $resource->id,
-            'locales' => $result,
-            'style' => config('multilingual.style'),
-            'convert_to_list_after' => config('multilingual.convert_to_list_after'),
-        ];
-    }
-
-    /**
-     * @param array $locales
-     * @return Multilingual
-     */
-    public function setLocales(array $locales)
-    {
-        return $this->withMeta(['locales' => $locales]);
-    }
-
-    /**
+     * Build the menu that renders the navigation links for the tool.
+     *
+     * @param  \Illuminate\Http\Request $request
      * @return mixed
      */
-    public function getLocales()
+    public function menu(Request $request)
     {
-        return $this->meta()["locales"];
+        return MenuSection::make('Language')
+            ->path('/multilingual')
+            ->icon('server');
     }
-
 }

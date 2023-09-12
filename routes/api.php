@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Digitalcloud\MultilingualNova\Http\Controllers\LanguageCurrentController;
 use Digitalcloud\MultilingualNova\Http\Controllers\LanguageDeleteController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Tool API Routes
@@ -15,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function (Request $request) {
+//     //
+// });
 Route::get('current-local', LanguageCurrentController::class);
 Route::delete('remove-local/{locale}', LanguageDeleteController::class);

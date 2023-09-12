@@ -42,7 +42,6 @@ class FieldServiceProvider extends PackageServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
-
     }
 
 
@@ -56,5 +55,4 @@ class FieldServiceProvider extends PackageServiceProvider
             ->prefix('nova-vendor/multilingual-nova')
             ->group(__DIR__ . '/../routes/api.php');
     }
-
 }
