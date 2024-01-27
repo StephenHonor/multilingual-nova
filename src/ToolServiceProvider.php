@@ -1,6 +1,6 @@
 <?php
 
-namespace Max26292\Multilingual;
+namespace Digitalcloud\MultilingualNova;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
