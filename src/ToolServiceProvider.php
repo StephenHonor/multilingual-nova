@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Nova;
-use Max26292\Multilingual\Http\Middleware\Authorize;
+use Digitalcloud\MultilingualNova\Http\Middleware\Authorize;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -38,11 +38,11 @@ class ToolServiceProvider extends ServiceProvider
             return;
         }
 
-        Nova::router(['nova', Authenticate::class, Authorize::class], 'multilingual')
+        Nova::router(['nova', Authenticate::class, Authorize::class], 'nova-language-tool')
             ->group(__DIR__.'/../routes/inertia.php');
 
         Route::middleware(['nova', Authorize::class])
-            ->prefix('nova-vendor/multilingual')
+            ->prefix('nova-vendor/nova-language-tool')
             ->group(__DIR__.'/../routes/api.php');
     }
 
